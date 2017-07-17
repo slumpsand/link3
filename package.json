@@ -1,0 +1,19 @@
+{
+  "name": "link3",
+  "version": "3.0.0",
+  "description": "A small nodejs-server that helps keeping track of links",
+  "main": "app.js",
+  "scripts": {
+    "start": "./bin/www",
+    "prestart": "make build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slumpsand/link3.git"
+  },
+  "author": "slumpsand <slumpsand@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/slumpsand/link3/issues"
+  },
+  "homepage": "https://github.com/slumpsand/link3#readme"
+}

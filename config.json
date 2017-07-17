@@ -1,0 +1,3 @@
+{
+  "bind": { "host": "localhost", "port": 4051 }
+}
