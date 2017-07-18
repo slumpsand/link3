@@ -5,9 +5,8 @@ import { Config } from "../server/config";
 const fs = require("fs");
 const http = require("http");
 
-const config = JSON.parse(fs.readFileSync("../config.json", "utf8")) as Config;
+const config = JSON.parse(fs.readFileSync("config.json", "utf8")) as Config;
 
+console.log(`listening on ${config.bind.host}:${config.bind.port}`);
 http.createServer(require("../server/app"))
-  .on("listen", () => {
-    console.log(`listening on ${config.bind.host}:${config.bind.port}`);
-  });
+  .listen(config.bind.port, config.bind.host);
