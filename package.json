@@ -2,10 +2,8 @@
   "name": "link3",
   "version": "3.0.0",
   "description": "A small nodejs-server that helps keeping track of links",
-  "main": "app.js",
   "scripts": {
-    "start": "./bin/www",
-    "prestart": "tsc"
+    "start": "./bin/www"
   },
   "repository": {
     "type": "git",
@@ -17,6 +15,6 @@
   },
   "homepage": "https://github.com/slumpsand/link3#readme",
   "devDependencies": {
-    "@types/node": "^8.0.14"
+    "@types/node": "latest"
   }
 }
