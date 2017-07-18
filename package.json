@@ -16,5 +16,8 @@
   "homepage": "https://github.com/slumpsand/link3#readme",
   "devDependencies": {
     "@types/node": "latest"
+  },
+  "dependencies": {
+    "express": "^4.15.3"
   }
 }
