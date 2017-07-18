@@ -24,7 +24,8 @@ build:
 	@tsc --outDir $(BUILD_DIR)/client --project src/client/tsconfig.json
 
 	@echo "$(B)(03) building executables ...$(C)"
-	@tsc --outFile $(BUILD_DIR)/bin/www --project src/bin/tsconfig.json
+	@tsc --outDir $(BUILD_DIR)/bin --project src/bin/tsconfig.json
+	@mv $(BUILD_DIR)/bin/www.js $(BUILD_DIR)/bin/www
 	@chmod +x $(BUILD_DIR)/bin/www
 
 	@echo "$(B)(04) copying build files ...$(C)"
