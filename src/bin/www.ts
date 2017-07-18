@@ -1,12 +1,10 @@
 #!/usr/bin/env node
 
-import { Config } from "../server/config";
+import * as http from "http";
 
-const fs = require("fs");
-const http = require("http");
+import config from "../server/config";
+import app from "../server/app";
 
-const config = JSON.parse(fs.readFileSync("config.json", "utf8")) as Config;
-
-console.log(`listening on ${config.bind.host}:${config.bind.port}`);
-http.createServer(require("../server/app"))
+console.log(`listening on ${config.bind}`);
+http.createServer(app)
   .listen(config.bind.port, config.bind.host);

@@ -18,6 +18,7 @@
     "@types/node": "latest"
   },
   "dependencies": {
-    "express": "^4.15.3"
+    "express": "latest",
+    "monk": "latest"
   }
 }
