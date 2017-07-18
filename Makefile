@@ -15,34 +15,27 @@ C := $(shell tput sgr0)
 # build the application into build/
 build:
 	@echo "$(B)--- building into '$(BUILD_DIR)' ...$(C)"
-	@mkdir -p $(BUILD_DIR)
+	@mkdir -p $(BUILD_DIR) $(INSTALL_DIR)
 
-	@echo "$(B)(B-01) building server ...$(C)"
-	@tsc --outDir=$(BUILD_DIR)/server --project src/server/tsconfig.json
+	@echo "$(B)(01) building server ...$(C)"
+	@tsc --outDir $(BUILD_DIR)/server --project src/server/tsconfig.json
 
-	@echo "$(B)(B-02) bulding client ...$(C)"
-	@tsc --outDir=$(BUILD_DIR)/client --project src/client/tsconfig.json
+	@echo "$(B)(02) bulding client ...$(C)"
+	@tsc --outDir $(BUILD_DIR)/client --project src/client/tsconfig.json
 
-	@echo "$(B)(B-03) building executables ...$(C)"
-	@tsc --outFile=$(BUILD_DIR)/bin/www --project src/bin/tsconfig.json
+	@echo "$(B)(03) building executables ...$(C)"
+	@tsc --outFile $(BUILD_DIR)/bin/www --project src/bin/tsconfig.json
 	@chmod +x $(BUILD_DIR)/bin/www
 
-	@echo "$(B)(B-04) copying build files ...$(C)"
+	@echo "$(B)(04) copying build files ...$(C)"
 	@cp -R package.json build/* $(BUILD_DIR)/
 
-	@echo "$(B)(B-05) installing npm modules ...$(C)"
-	@cd $(BUILD_DIR) && npm install
+	@echo "$(B)(05) installing npm modules ...$(C)"
+	@cd $(BUILD_DIR) && npm install --production --silent > /dev/null
 
-	@echo "$(B)--- build complete$(C)"
+	@echo "$(B)(06) zipping package ...$(C)"
+	@tar -czPf $(INSTALL_FILE) $(BUILD_DIR)
 
-# create a .tar.gz package
-dist:
-	@echo "$(B)--- packaging into '$(INSTALL_FILE)' ...$(C)"
-	@mkdir -p $(INSTALL_DIR)
-
-	@echo "$(B)(D-01) zipping package ...$(C)"
-	@tar -czf $(INSTALL_FILE) $(BUILD_DIR)/
-
-	@echo "$(B)--- packaging complete ...$(C)"
+	@echo "$(B)--- build complete, package: '$(INSTALL_FILE)'$(C)"
 
 .PHONY: build dist
