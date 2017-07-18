@@ -17,24 +17,19 @@ build:
 	@echo "$(B)--- building into '$(BUILD_DIR)' ...$(C)"
 	@mkdir -p $(BUILD_DIR) $(INSTALL_DIR)
 
-	@echo "$(B)(01) building server ...$(C)"
-	@tsc --outDir $(BUILD_DIR)/server --project src/server/tsconfig.json
+	@echo "$(B)(01) building typescript ...$(C)"
+	@tsc --outDir $(BUILD_DIR)
 
-	@echo "$(B)(02) bulding client ...$(C)"
-	@tsc --outDir $(BUILD_DIR)/client --project src/client/tsconfig.json
+	@echo "$(B)(02) moving stuff around ...$(C)"
+	@for f in $(BUILD_DIR)/bin/*.js; do chmod +x $$f && mv $$f $${f%.js}; done
 
-	@echo "$(B)(03) building executables ...$(C)"
-	@tsc --outDir $(BUILD_DIR)/bin --project src/bin/tsconfig.json
-	@mv $(BUILD_DIR)/bin/www.js $(BUILD_DIR)/bin/www
-	@chmod +x $(BUILD_DIR)/bin/www
-
-	@echo "$(B)(04) copying build files ...$(C)"
+	@echo "$(B)(03) copying build files ...$(C)"
 	@cp -R package.json build/* $(BUILD_DIR)/
 
-	@echo "$(B)(05) installing npm modules ...$(C)"
+	@echo "$(B)(04) installing npm modules ...$(C)"
 	@cd $(BUILD_DIR) && npm install --production --silent > /dev/null
 
-	@echo "$(B)(06) zipping package ...$(C)"
+	@echo "$(B)(05) zipping package ...$(C)"
 	@tar -czPf $(INSTALL_FILE) $(BUILD_DIR)
 
 	@echo "$(B)--- build complete, package: '$(INSTALL_FILE)'$(C)"
