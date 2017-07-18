@@ -1,13 +1,12 @@
 SHELL := /bin/bash
 VERSION := 3.0.0
-TSC_FLAGS := $(TSC_FLAGS) --moduleResolution=node --target=ES2017 --typeRoots=node_modules/@types
 
 ARCH := $(shell uname -p)
 
 INSTALL_DIR ?= dist
 BUILD_DIR ?= $(shell mktemp -d)
 
-BUILD_DIR += /link3-$(VERSION)_$(ARCH)
+BUILD_DIR := $(BUILD_DIR)/link3-$(VERSION)_$(ARCH)
 INSTALL_FILE := $(INSTALL_DIR)/link3-$(VERSION)_$(ARCH).tar.gz
 
 B := $(shell tput setaf 3 && tput bold)
@@ -19,13 +18,13 @@ build:
 	@mkdir -p $(BUILD_DIR)
 
 	@echo "$(B)(B-01) building server ...$(C)"
-	@tsc $(TSC_FLAGS) --outDir=$(BUILD_DIR)/server src/server/*.ts
+	@tsc --outDir=$(BUILD_DIR)/server --project src/server/tsconfig.json
 
 	@echo "$(B)(B-02) bulding client ...$(C)"
-	@tsc $(TSC_FLAGS) --outDir=$(BUILD_DIR)/client src/client/*.ts
+	@tsc --outDir=$(BUILD_DIR)/client --project src/client/tsconfig.json
 
 	@echo "$(B)(B-03) building executables ...$(C)"
-	@tsc $(TSC_FLAGS) --outFile=$(BUILD_DIR)/bin/www src/bin/www.ts
+	@tsc --outFile=$(BUILD_DIR)/bin/www --project src/bin/tsconfig.json
 	@chmod +x $(BUILD_DIR)/bin/www
 
 	@echo "$(B)(B-04) copying build files ...$(C)"
@@ -45,3 +44,5 @@ dist:
 	@tar -czf $(INSTALL_FILE) $(BUILD_DIR)/
 
 	@echo "$(B)--- packaging complete ...$(C)"
+
+.PHONY: build dist
