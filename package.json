@@ -3,7 +3,7 @@
   "version": "3.0.0",
   "description": "A small nodejs-server that helps keeping track of links",
   "scripts": {
-    "start": "./bin/www"
+    "start": "node bin/www"
   },
   "repository": {
     "type": "git",
@@ -14,11 +14,10 @@
     "url": "https://github.com/slumpsand/link3/issues"
   },
   "homepage": "https://github.com/slumpsand/link3#readme",
-  "devDependencies": {
-    "@types/node": "latest"
-  },
   "dependencies": {
     "express": "latest",
-    "monk": "latest"
+    "monk": "latest",
+    "body-parser": "latest",
+    "pug": "latest"
   }
 }

@@ -1,6 +1,0 @@
-{
-  "moduleResolution": "node",
-  "typeRoots": "node_modules/@types",
-  "include": [ "src/**/*.ts" ],
-  "target": "ES2017"
-}

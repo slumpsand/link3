@@ -1,0 +1,4 @@
+{
+  "bind": { "host": "localhost", "port": 4051 },
+  "db": { "name": "link3", "collection": "links" }
+}

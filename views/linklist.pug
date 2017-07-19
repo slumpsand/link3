@@ -1,0 +1,25 @@
+doctype html
+html
+  head
+    title linklist
+    
+    link(rel="stylesheet" href="css/style.css")
+
+body
+  a(href="https://github.com/slumpsand/link3", id="fork-me", alt="Fork me on GitHub")
+    img(src="img/fork-me.png")
+  
+  content
+    header(grid-area="header")
+      h1 linklist,
+      h2 ... save your links on the server
+
+    main(grid-area="main")
+      input(type="text", placeholder="link ...", id="new-link", grid-area="new-link")
+      ul(id="links", grid-area="links")
+
+    footer(grid-area="footer")
+      | github-repository:
+      a(href="https://github.com/slumpsand/link3") link3
+
+  script(src="js/client.js")

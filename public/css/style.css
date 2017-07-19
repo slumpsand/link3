@@ -1,0 +1,53 @@
+:root {
+  --widget-secondary: #4286f4;
+  --widget-primary: #1c60ce;
+
+  --font-size-primary: 20px;
+
+  --font-color-primary: white;
+  --font-color-secondary: #DDD;
+}
+
+content {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: repeat(auto, 3);
+    grid-template-areas:
+        "header"
+        "main"
+        "footer";
+    grid-gap: 1em;
+}
+
+main {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: auto;
+    grid-template-areas:
+        "new-link"
+        "links";
+    grid-gap: 1em;
+}
+
+main, header, footer {
+  background-color: var(--widget-secondary);
+  padding: 10px;
+}
+
+#new-link, #new-link:focus {
+  background-color: var(--widget-primary);
+  font-size: var(--font-size-primary);
+  color: var(--font-color-primary)
+}
+
+#new-link::-webkit-input-placeholder {
+  color: var(--font-color-secondary);
+}
+
+#fork-me {
+  position: absolute;
+
+  top: 0;
+  right: 0;
+  border: 0;
+}
